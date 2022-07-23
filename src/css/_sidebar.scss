@@ -1,0 +1,11 @@
+@import "config";
+@import "../../node_modules/rfs/sass.sass";
+
+.menu {
+	position: fixed;
+	height: 100%;
+	left: 0;
+	background-color: $dark-navy;
+	z-index: 5;
+	@include rfs(5rem, width);
+}

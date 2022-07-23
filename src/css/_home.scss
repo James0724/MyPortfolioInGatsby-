@@ -1,0 +1,85 @@
+@import "config";
+@import "../../node_modules/rfs/sass.sass";
+
+#home {
+	height: 100vh;
+}
+.overlay {
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	height: 100vh;
+	width: 100%;
+	background: rgb(35, 53, 84);
+	background: radial-gradient(
+		circle,
+		rgba(35, 53, 84, 0.55) 0%,
+		rgba(17, 34, 64, 1) 77%
+	);
+}
+.home {
+	overflow: hidden;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	color: $white;
+	align-items: center;
+	justify-content: center;
+	font-family: "Montserrat", sans-serif;
+
+	&__info {
+		z-index: 5;
+		margin-top: -20%;
+		@include padding(1rem);
+		&__name {
+			position: relative;
+			font-weight: 900;
+			color: $lightest-slate;
+			white-space: nowrap;
+			@include font-size(4rem);
+			@include rfs(
+				0 1rem 1.5rem $dark-navy #{","} 0 2rem 3rem $navy-shadow,
+				text-shadow
+			);
+			&:before,
+			&:after {
+				content: "";
+				@include padding(1em 0.5em);
+				position: absolute;
+				left: 50%;
+				width: 100%;
+				top: 50%;
+				display: block;
+				@include rfs(0.3rem solid $green, border);
+				transform: translateX(-50%) translateY(-50%) rotate(0deg);
+				animation: 10s infinite alternate ease-in-out tipsy;
+			}
+
+			&:before {
+				border-color: $green $green rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
+				z-index: -1;
+			}
+
+			&:after {
+				border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) $green $green;
+				box-shadow: 25px 25px 25px rgba(100, 255, 219, 0.1);
+			}
+		}
+		&__intro {
+			@include font-size(0.7rem);
+			font-weight: 500;
+			font-family: "JetBrains Mono", monospace;
+			color: $slate;
+			white-space: nowrap;
+		}
+		&__profession {
+			@include font-size(0.7rem);
+			font-weight: 500;
+			font-family: "JetBrains Mono", monospace;
+			color: $slate;
+			white-space: nowrap;
+			position: absolute;
+			left: 50%;
+		}
+	}
+}

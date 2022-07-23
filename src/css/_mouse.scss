@@ -1,0 +1,181 @@
+@import "config";
+
+//first priority scroll down option
+
+.scroll-down {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	bottom: 1rem;
+	z-index: 5;
+	text-align: center;
+	&:before {
+		content: "";
+		display: block;
+		margin: 0;
+		padding: 0;
+		@include rfs(2px, width);
+		@include rfs(2rem, height);
+		background-color: $green;
+		animation: elasticus 3s cubic-bezier(1, 0, 0, 1) infinite;
+	}
+}
+.arrow-down {
+	@include rfs(1.5em, height);
+}
+.arrow-down:after {
+	content: "";
+	display: block;
+	margin: 0;
+	padding: 0;
+	@include rfs(5px, width);
+	@include rfs(5px, height);
+	border-top: 1px solid $green;
+	border-right: 1px solid $green;
+	transform: rotate(135deg);
+}
+#scroll-title {
+	display: block;
+	text-transform: uppercase;
+	color: $light-slate;
+	font-family: "Montserrat", sans-serif;
+	@include font-size(0.7rem);
+	font-weight: 300;
+	letter-spacing: 0.3em;
+}
+
+// Second alternative to scroll down option start link
+
+// .link {
+// 	$self: &;
+// 	display: inline-flex;
+// 	align-items: center;
+// 	padding: 5px;
+// 	text-decoration: none;
+// 	transform: rotate(-90deg) translate3d(-280px, 0, 0);
+
+// 	&__arrow {
+// 		display: inline-flex;
+
+// 		span {
+// 			position: relative;
+// 			width: 14px;
+// 			height: 2px;
+// 			border-radius: 2px;
+// 			overflow: hidden;
+// 			background: #bebdbe;
+// 			z-index: 2;
+
+// 			&:nth-child(1) {
+// 				transform-origin: left bottom;
+// 				transform: rotate(45deg) translate3d(8px, -10px, 0);
+// 			}
+
+// 			&:nth-child(2) {
+// 				transform-origin: left bottom;
+// 				transform: rotate(-45deg);
+// 			}
+
+// 			&:after {
+// 				content: "";
+// 				display: block;
+// 				position: absolute;
+// 				left: 0;
+// 				width: 0;
+// 				height: 2px;
+// 				background: $green;
+// 			}
+// 		}
+// 	}
+
+// 	&__line {
+// 		position: relative;
+// 		margin-left: -14px;
+// 		margin-right: 1rem;
+// 		@include rfs(5rem, width);
+// 		height: 2px;
+// 		background-color: $lightest-slate;
+// 		overflow: hidden;
+// 		z-index: 1;
+
+// 		&:after {
+// 			content: "";
+// 			display: block;
+// 			position: absolute;
+// 			left: 80px;
+// 			@include rfs(3rem, width);
+// 			height: 2px;
+// 			background: $green;
+// 			animation: elasticus 1.2s cubic-bezier(1, 0, 0, 1) infinite;
+// 		}
+// 	}
+
+// 	&__text {
+// 		color: $light-slate;
+// 		font-family: "Montserrat", sans-serif;
+// 		font-weight: 500;
+// 		letter-spacing: 2px;
+// 		@include font-size(0.8rem);
+// 		text-transform: uppercase;
+// 	}
+
+// 	&:hover {
+// 		#{$self} {
+// 			&__line {
+// 				&:after {
+// 					animation: animation-line 1.5s forwards;
+// 				}
+// 			}
+
+// 			&__arrow {
+// 				span {
+// 					&:after {
+// 						animation: animation-arrow 1.5s forwards;
+// 						animation-delay: 1s;
+// 					}
+// 				}
+// 			}
+// 		}
+// 	}
+// }
+
+@keyframes animation-line {
+	0% {
+		left: 80px;
+	}
+
+	100% {
+		left: 0;
+	}
+}
+
+@keyframes animation-arrow {
+	0% {
+		width: 0;
+	}
+
+	100% {
+		width: 100%;
+	}
+}
+
+@keyframes elasticus {
+	0% {
+		transform-origin: 0% 0%;
+		transform: scale(1, 0);
+	}
+	50% {
+		transform-origin: 0% 0%;
+		transform: scale(1, 1);
+	}
+	50.1% {
+		transform-origin: 0% 100%;
+		transform: scale(1, 1);
+	}
+	100% {
+		transform-origin: 0% 100%;
+		transform: scale(1, 0);
+	}
+}
