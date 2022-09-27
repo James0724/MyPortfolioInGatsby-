@@ -1,5 +1,21 @@
+import { graphql, useStaticQuery } from "gatsby";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import React from "react";
-import Dev from "../images/dev.png";
+
+const query = graphql`
+	{
+		file(relativePath: { eq: "dev.png" }) {
+			publicURL
+			relativePath
+			childImageSharp {
+				gatsbyImageData(
+					placeholder: BLURRED
+					pngOptions: { compressionSpeed: 10, quality: 10 }
+				)
+			}
+		}
+	}
+`;
 
 function Aboutimg() {
 	const data = useStaticQuery(query);
@@ -8,10 +24,18 @@ function Aboutimg() {
 	return (
 		<div className="imgstyle-two">
 			<div className="image-wrapper">
-				<img className="image-1" src={Dev} alt="" />
-				<img className="image-2" src={Dev} alt="" />
-				<img className="image-3" src={Dev} alt="" />
-				<img className="image-4" src={Dev} alt="" />
+				<div className="img-item">
+					<GatsbyImage image={image} className="image-1" alt="James Kahoro" />
+				</div>
+				<div className="img-item">
+					<GatsbyImage image={image} className="image-2" alt="James Kahoro" />
+				</div>
+				<div className="img-item">
+					<GatsbyImage image={image} className="image-3" alt="James Kahoro" />
+				</div>
+				<div className="img-item">
+					<GatsbyImage image={image} className="image-4 " alt="James Kahoro" />
+				</div>
 			</div>
 		</div>
 	);
