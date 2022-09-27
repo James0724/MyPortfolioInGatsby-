@@ -8,6 +8,11 @@ gsap.registerPlugin(ScrollTrigger);
 const Scroll = () => {
 	useEffect(() => {
 		if (window !== "undefined") {
+			const options = {
+				damping: 0.05,
+				delegateTo: document,
+				alwaysShowTracks: true,
+			};
 			const scroller = document.querySelector(".main");
 
 			let bodyScrollBar = Scrollbar.init(scroller, options);
