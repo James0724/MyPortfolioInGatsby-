@@ -4,7 +4,11 @@ require("dotenv").config({
 
 module.exports = {
 	siteMetadata: {
-		siteUrl: `https://www.yourdomain.tld`,
+		title: `James Kahoro -fullstack developer`,
+		description: `Software engineering based in Nairobi, kenya proficient in reactJs, GatsbyJs and other frontend frameworks and library `,
+		twitterUsername: `jameskahoro07`,
+		image: `src/images/dev.png`,
+		siteUrl: `https://www.jameskahoro.dev`,
 	},
 	plugins: [
 		{
@@ -31,8 +35,21 @@ module.exports = {
 				accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
 			},
 		},
+		{
+			resolve: "gatsby-plugin-manifest",
+			options: {
+				name: `James Kahoro - fullstack developer`,
+				short_name: `Fullstack web developer`,
+				description: `Software engineering based in Nairobi, kenya proficient in reactJs, GatsbyJs and other frontend frameworks and library`,
+				lang: `en`,
+				theme_color: ` #d6ed17ff`,
+				display: `standalone`,
+				icon: `src/images/logo.png`,
+			},
+		},
 		`gatsby-plugin-image`,
 		`gatsby-plugin-sharp`,
 		`gatsby-transformer-sharp`,
+		`gatsby-plugin-sass`,
 	],
 };

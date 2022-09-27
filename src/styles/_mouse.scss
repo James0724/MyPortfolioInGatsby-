@@ -9,7 +9,7 @@
 	align-items: center;
 	position: absolute;
 	bottom: 1rem;
-	z-index: 5;
+	z-index: 1;
 	text-align: center;
 	&:before {
 		content: "";
@@ -41,7 +41,7 @@
 	text-transform: uppercase;
 	color: $light-slate;
 	font-family: "Montserrat", sans-serif;
-	@include font-size(0.7rem);
+	@include font-size(12px);
 	font-weight: 300;
 	letter-spacing: 0.3em;
 }

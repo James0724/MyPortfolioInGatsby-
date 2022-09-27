@@ -1,0 +1,28 @@
+@import "config";
+@import "../../node_modules/rfs/sass.sass";
+
+#contact {
+	height: fit-content;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+}
+.contact {
+	margin-bottom: 3rem;
+	color: $slate;
+	font-family: "JetBrains Mono", monospace;
+	p {
+		span {
+			color: $green;
+			font-family: "Montserrat", sans-serif;
+			letter-spacing: 0.2rem;
+			// font-size: calc(0.575rem + (62.5vw - 30em) / 72);
+			//border-bottom: 1px solid $green;
+			white-space: nowrap;
+		}
+	}
+	&__btn {
+		width: fit-content;
+		margin: 3rem auto;
+	}
+}

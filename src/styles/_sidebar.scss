@@ -1,0 +1,348 @@
+@import "config";
+@import "../../node_modules/rfs/sass.sass";
+
+.container {
+	margin: 0 auto;
+	height: 100vh;
+	overflow: hidden;
+	.wrapper {
+		@include padding(0 4rem);
+	}
+}
+
+.outer-header {
+	height: 100px;
+	width: 100%;
+	z-index: 20;
+	// top: 1.5rem;
+	// position: fixed;
+	overflow: hidden;
+	transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+.fixed {
+	position: fixed;
+}
+
+.inner-header {
+	position: relative;
+	z-index: 10;
+	@include rfs(100px, height);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	.logo a {
+		font-weight: 400;
+		font-size: calc(0.675rem + (62.5vw - 30em) / 72);
+		font-family: "Playfair Display", serif;
+		text-decoration: none;
+		font-style: italic;
+		color: $green;
+	}
+	.menu {
+		button {
+			border: none;
+			background: none;
+			outline: none;
+			cursor: pointer;
+			font-size: calc(0.575rem + (62.5vw - 30em) / 72);
+			mix-blend-mode: difference;
+		}
+	}
+}
+.hamburger-menu {
+	display: none;
+	z-index: 9;
+	top: 0;
+	left: 0;
+	right: 0;
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	.menu-secondary-background-color {
+		background: $green;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		position: fixed;
+		height: 100%;
+		width: 100%;
+		z-index: -1;
+	}
+	.menu-layer {
+		position: relative;
+		background: $light-navy;
+		height: 100%;
+		overflow: hidden;
+		.menu-city-background {
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			position: absolute;
+			height: 100%;
+			width: 100%;
+			opacity: 0;
+			background-size: cover;
+			background-repeat: no-repeat;
+			animation-name: backgroundEffect;
+			animation-duration: 30s;
+			animation-iteration-count: infinite;
+		}
+		.wrapper {
+			position: relative;
+			.menu-links {
+				display: flex;
+				align-items: center;
+				position: relative;
+				top: 150px;
+				nav {
+					display: block;
+					ul {
+						margin: 0;
+						padding: 0;
+						li {
+							list-style: none;
+							@include font-size(3rem);
+							font-family: "Montserrat", sans-serif;
+							font-weight: 700;
+							cursor: pointer;
+							@include rfs(5rem, height);
+							overflow: hidden;
+							position: relative;
+							@include padding(1rem 0);
+							@include rfs(30rem, width);
+							a {
+								position: absolute;
+								color: $slate;
+								text-decoration: none;
+								&:hover {
+									color: $lightest-slate;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+@keyframes backgroundEffect {
+	0% {
+		background-position: 0% 0%;
+	}
+	25% {
+		background-position: 40% 10%;
+	}
+	50% {
+		background-position: 0 10%;
+	}
+	75% {
+		background-position: 10% 40%;
+	}
+	100% {
+		background-position: 0% 0%;
+	}
+}
+
+// The Arrows
+
+.the-arrow {
+	width: $shaft-width;
+	transition: all 0.2s;
+
+	&.-left {
+		position: absolute;
+		top: 60%;
+		left: 0;
+
+		> .shaft {
+			width: 0;
+			background-color: $green;
+
+			&:before,
+			&:after {
+				width: 0;
+				background-color: $green;
+			}
+
+			&:before {
+				transform: rotate(0);
+			}
+
+			&:after {
+				transform: rotate(0);
+			}
+		}
+	}
+
+	&.-right {
+		top: 3px;
+
+		> .shaft {
+			width: $shaft-width;
+			transition-delay: 0.2s;
+
+			&:before,
+			&:after {
+				width: $arrow-head-width;
+				transition-delay: 0.3s;
+				transition: all 0.5s;
+			}
+
+			&:before {
+				transform: rotate(40deg);
+			}
+
+			&:after {
+				transform: rotate(-40deg);
+			}
+		}
+	}
+
+	> .shaft {
+		background-color: $green;
+		display: block;
+		height: $shaft-thickness;
+		position: relative;
+		transition: all 0.2s;
+		transition-delay: 0;
+		will-change: transform;
+
+		&:before,
+		&:after {
+			background-color: $green;
+			content: "";
+			display: block;
+			height: $arrow-head-thickness;
+			position: absolute;
+			top: 0;
+			right: 0;
+			transition: all 0.2s;
+			transition-delay: 0;
+		}
+
+		&:before {
+			transform-origin: top right;
+		}
+
+		&:after {
+			transform-origin: bottom right;
+		}
+	}
+}
+
+// Animated Arrow Button
+
+.animated-arrow {
+	display: inline-block;
+	color: $green;
+	font-size: 1.25em;
+	font-style: italic;
+	text-decoration: none;
+	position: relative;
+	transition: all 0.2s;
+
+	&:hover {
+		color: $green;
+
+		> .the-arrow.-left {
+			> .shaft {
+				width: $shaft-width;
+				transition-delay: 0.1s;
+				background-color: $green;
+
+				&:before,
+				&:after {
+					width: $arrow-head-width;
+					transition-delay: 0.1s;
+					background-color: $green;
+				}
+
+				&:before {
+					transform: rotate(40deg);
+				}
+
+				&:after {
+					transform: rotate(-40deg);
+				}
+			}
+		}
+
+		> .main-link {
+			transform: translateX($shaft-width + $text-arrow-space);
+
+			> .the-arrow.-right {
+				> .shaft {
+					width: 0;
+					transform: translateX(200%);
+					transition-delay: 0;
+
+					&:before,
+					&:after {
+						width: 0;
+						transition-delay: 0;
+						transition: all 0.1s;
+					}
+
+					&:before {
+						transform: rotate(0);
+					}
+
+					&:after {
+						transform: rotate(0);
+					}
+				}
+			}
+		}
+	}
+
+	> .main-link {
+		display: flex;
+		align-items: center;
+		transition: all 0.2s;
+
+		> .text {
+			margin: 0 $text-arrow-space 0 0;
+			line-height: 1;
+		}
+
+		> .the-arrow {
+			position: relative;
+		}
+	}
+}
+
+//RESPONSIVE FEATURE
+@media (max-width: 834px) {
+	header {
+		.inner-header {
+			.logo a {
+				font-size: calc(0.975rem + (62.5vw - 30em) / 72);
+			}
+			.menu {
+				button {
+					font-size: calc(0.775rem + (62.5vw - 30em) / 72);
+				}
+			}
+		}
+		.hamburger-menu {
+			.menu-layer {
+				.wrapper {
+					.menu-links {
+						top: 200px;
+						nav {
+							ul {
+								li {
+									font-weight: 600;
+									@include rfs(50rem, width);
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

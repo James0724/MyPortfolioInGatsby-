@@ -1,43 +1,32 @@
-import * as React from "react";
-import background from "../images/background.jpg";
-import HomePage from "./homePage";
+import React, { useEffect, useState, useRef } from "react";
+import Content from "../components/content";
+import Starter from "../components/Loading-animation";
 
-import "../dist/css/main.css";
-import AboutPage from "./aboutPage";
-import ProjectPage from "./projectPage";
-import ContactPage from "./contactPage";
+const HomePage = () => {
+	const [preloader, setPreloader] = useState(true);
 
-// styles
-const backgroundImagePic = {
-	backgroundImage: `url(${background})`,
-	backgroundSize: "cover",
-	backgroundRepeat: "no-repeat",
-	backgroundPosition: "50% 50%",
+	const [timer, setTimer] = useState(5);
+
+	const id = useRef(null);
+
+	const clear = () => {
+		window.clearInterval(id.current);
+		setPreloader(false);
+	};
+
+	useEffect(() => {
+		id.current = window.setInterval(() => {
+			setTimer((timer) => timer - 1);
+		}, 1000);
+	}, []);
+
+	useEffect(() => {
+		if (timer === 0) {
+			clear();
+		}
+	}, [timer]);
+
+	return <>{preloader ? <Starter /> : <Content />}</>;
 };
 
-const IndexPage = () => {
-	return (
-		<main>
-			<title>Home Page</title>
-			<nav className="menu"></nav>
-			<section id="home" style={backgroundImagePic}>
-				<HomePage />
-			</section>
-			<section id="about">
-				<AboutPage />
-			</section>
-			<section id="project">
-				<ProjectPage />
-			</section>
-			<section id="contact">
-				<ContactPage />
-			</section>
-			<footer className="footer">
-				<p>Design and built by James Kahoro</p>
-				<p>&copy; {new Date().getFullYear()}</p>
-			</footer>
-		</main>
-	);
-};
-
-export default IndexPage;
+export default HomePage;

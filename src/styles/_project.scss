@@ -1,0 +1,255 @@
+@import "config";
+@import "../../node_modules/rfs/sass.sass";
+
+.project {
+	color: $slate;
+	font-family: "JetBrains Mono", monospace;
+	&__item {
+		display: flex;
+		align-items: center;
+		&:nth-child(odd) {
+			flex-direction: row-reverse;
+		}
+
+		&__img {
+			width: 50%;
+		}
+		&__content {
+			margin: 0 3rem;
+			width: 50%;
+		}
+	}
+}
+.img-project {
+	width: 100%;
+	img {
+		clip-path: inset(100% 0% 0% 0%);
+		transition: clip-path 1s cubic-bezier(0.77, 0, 0.175, 1);
+		&.is-reveal {
+			clip-path: inset(0% 0% 0% 0%);
+		}
+	}
+}
+
+.title-wrapper {
+	display: flex;
+	margin: 3rem 0;
+}
+.project-number {
+	width: 50%;
+	position: relative;
+	&:before {
+		content: "";
+		position: absolute;
+		width: 100%;
+		bottom: 4px;
+		height: 1px;
+		background: $light-slate;
+		display: block;
+	}
+}
+.project-title {
+	color: $lightest-slate;
+	font-family: "Montserrat", sans-serif;
+	@include font-size(20px);
+	white-space: nowrap;
+	margin: 3rem 0;
+}
+.project-description {
+	color: $slate;
+	font-family: "JetBrains Mono", monospace;
+}
+.project-techlist {
+	margin: 1rem 0;
+	list-style: none;
+	color: $green;
+	font-family: "JetBrains Mono", monospace;
+	display: flex;
+	flex-direction: row;
+	padding: 0.5rem 0;
+	.project-tech {
+		@include font-size(0.8rem);
+		padding-right: 3em;
+		font-weight: 200;
+	}
+}
+.project-view {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	text-transform: uppercase;
+	color: $slate;
+	margin: 2rem 0;
+	a {
+		color: $slate;
+		letter-spacing: 2px;
+		font-weight: 500;
+		padding-right: 1em;
+		font-family: "Montserrat", sans-serif;
+		line-height: 2;
+	}
+}
+.main {
+	counter-reset: main-title-counter;
+	section {
+		.numbered-title {
+			width: 50%;
+			&:before {
+				counter-increment: main-title-counter;
+				content: "0" counter(main-title-counter);
+				font-family: "Montserrat", sans-serif;
+				color: $green;
+				position: relative;
+				font-weight: 900;
+				letter-spacing: 0.1em;
+				@include font-size(2rem);
+			}
+		}
+	}
+}
+
+//Links
+.link {
+	font-family: "Montserrat", sans-serif;
+	cursor: pointer;
+	position: relative;
+	width: fit-content;
+
+	h1 {
+		position: relative;
+		margin: 0;
+		padding: 0;
+		overflow: hidden;
+		text-transform: uppercase;
+		font-size: calc(0.975rem + (62.5vw - 30em) / 72);
+		letter-spacing: 0.3rem;
+
+		a {
+			margin: 0;
+			padding: 0;
+			line-height: 1;
+			color: $lightest-slate;
+			&:hover {
+				color: $dark-navy;
+				font-weight: 600;
+			}
+		}
+	}
+
+	&__underline {
+		position: absolute;
+		width: 100%;
+		left: 0;
+		height: 3px;
+		background-color: $green;
+		z-index: 5;
+		transition: transform 580ms cubic-bezier(0.2, 0.1, 0.15, 1.32);
+	}
+
+	&__highlight {
+		position: absolute;
+		width: 100%;
+		left: 0;
+		height: 50px;
+		background-color: $green;
+		z-index: -1;
+		transition: transform 400ms ease;
+	}
+
+	&:hover {
+		.link__underline {
+			bottom: 0.9em;
+			transform: translateY(-1em);
+		}
+		.link__highlight {
+			transform: translateY(-1.2em);
+		}
+	}
+}
+
+//RESPONSIVE FEATURE
+@media (max-width: 834px) {
+	.project {
+		margin: 0;
+
+		&__item {
+			flex-direction: column-reverse;
+			&:nth-child(odd) {
+				flex-direction: column-reverse;
+			}
+			&__img {
+				width: 100%;
+			}
+			&__content {
+				margin: 0;
+				width: 100%;
+			}
+		}
+	}
+	.project-title {
+		@include font-size(0.7rem);
+		margin: 2rem 0;
+	}
+	//Links
+	.link {
+		&:hover {
+			.link__underline {
+				bottom: 0.3em;
+			}
+		}
+	}
+
+	.project-techlist {
+		display: none;
+	}
+	.project-details {
+		min-height: 350px !important;
+		min-width: 50% !important;
+		padding: 0.3rem !important;
+		margin: 0.5rem 0.5rem !important;
+		border-radius: 0.8rem !important;
+	}
+}
+/*******************************Non featured projects******************************/
+.project-card {
+	display: flex;
+	flex-wrap: wrap;
+}
+.project-details {
+	flex: 35%;
+	min-height: 300px;
+	min-width: 200px;
+	max-width: 550px;
+	padding: 1.5rem;
+	margin: 2rem 1.75rem;
+	border-radius: 1rem;
+	background-color: $navy-shadow;
+	box-shadow: 0 10px 30px -15px #000;
+}
+
+.icons {
+	display: flex;
+	padding-left: 0;
+	padding-right: 20px;
+	justify-content: space-between;
+	.folder {
+		svg {
+			height: 20px;
+		}
+	}
+	.project-links {
+		a {
+			text-decoration: none;
+			border-bottom: none;
+			color: $slate;
+			svg {
+				height: 20px;
+			}
+			&:hover {
+				text-decoration: none;
+				color: $green;
+				border-bottom: none;
+			}
+		}
+	}
+}
