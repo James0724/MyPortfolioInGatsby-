@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import Content from "../components/content";
-import Starter from "../components/Loading-animation";
+import Starter from "../components/loading-animation";
 
 const HomePage = () => {
 	const [preloader, setPreloader] = useState(true);
