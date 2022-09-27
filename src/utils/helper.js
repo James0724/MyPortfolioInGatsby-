@@ -33,7 +33,7 @@ export const usePagination = ({
 		const totalPageCount = Math.ceil(totalCount / pageSize);
 
 		// Pages count is determined as siblingCount + firstPage + lastPage + currentPage + 2*DOTS
-		const totalPageNumbers = siblingCount + 4;
+		const totalPageNumbers = siblingCount + 5;
 
 		/*
       Case 1:
@@ -66,7 +66,7 @@ export const usePagination = ({
     	Case 2: No left dots to show, but rights dots to be shown
     */
 		if (!shouldShowLeftDots && shouldShowRightDots) {
-			let leftItemCount = 2 * siblingCount;
+			let leftItemCount = 3 + 2 * siblingCount;
 			let leftRange = range(1, leftItemCount);
 
 			return [...leftRange, DOTS, totalPageCount];
@@ -76,7 +76,7 @@ export const usePagination = ({
     	Case 3: No right dots to show, but left dots to be shown
     */
 		if (shouldShowLeftDots && !shouldShowRightDots) {
-			let rightItemCount = 2 * siblingCount;
+			let rightItemCount = 3 + 2 * siblingCount;
 			let rightRange = range(
 				totalPageCount - rightItemCount + 1,
 				totalPageCount
