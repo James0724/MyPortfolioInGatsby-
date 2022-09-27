@@ -5,12 +5,6 @@ import { ScrollTrigger } from "gsap/all";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const options = {
-	damping: 0.05,
-	delegateTo: document,
-	alwaysShowTracks: true,
-};
-
 const Scroll = () => {
 	useEffect(() => {
 		if (window !== "undefined") {
