@@ -13,20 +13,22 @@ const options = {
 
 const Scroll = () => {
 	useEffect(() => {
-		const scroller = document.querySelector(".main");
+		if (window !== "undefined") {
+			const scroller = document.querySelector(".main");
 
-		let bodyScrollBar = Scrollbar.init(scroller, options);
-		ScrollTrigger.scrollerProxy(".main", {
-			scrollTop(value) {
-				if (arguments.length) {
-					bodyScrollBar.scrollTop = value;
-				}
-				return bodyScrollBar.scrollTop;
-			},
-		});
-		bodyScrollBar.addListener(ScrollTrigger.update);
+			let bodyScrollBar = Scrollbar.init(scroller, options);
+			ScrollTrigger.scrollerProxy(".main", {
+				scrollTop(value) {
+					if (arguments.length) {
+						bodyScrollBar.scrollTop = value;
+					}
+					return bodyScrollBar.scrollTop;
+				},
+			});
+			bodyScrollBar.addListener(ScrollTrigger.update);
 
-		ScrollTrigger.defaults({ scroller: scroller });
+			ScrollTrigger.defaults({ scroller: scroller });
+		}
 	}, []);
 
 	return null;
